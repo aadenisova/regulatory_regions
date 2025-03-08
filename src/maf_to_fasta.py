@@ -22,7 +22,7 @@ for alignment in alignments:
         #print(alignment._records)
         continue
     for record in alignment._records:
-        name = '.'.join(record.name.split(".")[:-2])
+        name = '_'.join(record.name.split("_")[:2])
         sequence = record.seq._data.decode("utf-8")
         if name not in record_dict:
             record_dict[name] = sequence.strip('-')
