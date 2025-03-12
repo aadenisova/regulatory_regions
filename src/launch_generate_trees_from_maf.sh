@@ -6,7 +6,7 @@
 #SBATCH --ntasks=1                   # Количество задач на одну задачу массива
 #SBATCH --mail-user=savouriess2112@gmail.com
 
-# Разбиваем файл на батчи по X строк (без заголовка)
+# # Разбиваем файл на батчи по X строк (без заголовка)
 # input_file=GCF_003957565.2_2k_upstream.bed 
 # lines_per_batch=100
 # header=$(head -n 1 "$input_file") # Сохраняем заголовок

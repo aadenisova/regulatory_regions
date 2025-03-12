@@ -35,6 +35,12 @@ for species in range(n_species):
 
 filtered_alignment = [record for record in alignment if record.id not in species_to_delete]
 
+species_must_be_in_alignment_set = {"GCF_012460135.1","GCF_015832195.1","GCA_016904835.1","GCF_017639655.2","GCF_900496995.4","GCA_014839755.1","GCA_903797595.2","GCA_009819655.1","GCF_009829145.1","GCA_015220805.1","GCA_013407035.1","GCF_015227805.1","GCA_017639245.1","GCA_019023105.1","GCA_009764595.1","GCA_020746105.1","GCF_009650955.1","GCF_015220075.1","GCF_003957565.2","GCF_000738735.5","GCA_009819595.1","GCF_009819885.2","GCA_018139145.1","GCF_004027225.2","GCA_009769605.1","GCA_009819825.1"}
+number_to_check = len(species_must_be_in_alignment_set)
+
+if len(species_to_save) < number_to_check:
+    raise ValueError(f"Too small number of records (just {number_of_records})")
+
 # Сохранение отфильтрованного выравнивания
 with open(f"filtered_alignments/{gene_name}.aln", "w") as output_handle:
     AlignIO.write(

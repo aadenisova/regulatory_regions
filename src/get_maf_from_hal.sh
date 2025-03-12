@@ -15,8 +15,10 @@ REF_GENOME="GCF_003957565.2_bTaeGut1.4.pri"
 CHROMOSOME_FILE="chromosomes.tsv"
 
 # Директория для вывода MAF-файлов
-OUTPUT_DIR="maf_outputs"
+OUTPUT_DIR="maf_outputs_target"
 mkdir -p $OUTPUT_DIR
+
+target_genomes=$1
 
 # Чтение хромосом из файла и запуск hal2maf для каждой хромосомы
 while IFS=$'\t' read -r CHROMOSOME; do
@@ -27,6 +29,7 @@ while IFS=$'\t' read -r CHROMOSOME; do
     srun hal2maf --noAncestors --noDupes --onlyOrthologs \
         --refGenome $REF_GENOME \
         --refSequence $CHROMOSOME \
+        --targetGenomes $target_genomes \
         $HAL_FILE $OUTPUT_MAF &
 done < <(tail -n +2 $CHROMOSOME_FILE)  # Пропускаем заголовок файла
 
